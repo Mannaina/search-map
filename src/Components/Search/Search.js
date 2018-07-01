@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import "./Search.css"
-import {searchMap} from './../../Redux/Search';
+import {searchMap,showMap} from './../../Redux/Search';
 import {connect } from 'react-redux'
 class Search extends Component{
 constructor(){
@@ -16,6 +16,7 @@ onHandleChange=(e)=>{
 }
 handleSearch=()=>{
     this.props.dispatch(searchMap(this.state.text))
+    this.props.dispatch(showMap(false))
 }
     render(){
     //    console.log(this.state.text)

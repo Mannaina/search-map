@@ -1,5 +1,20 @@
 .mapborder{
-    border:5px solid rgb(12, 12, 12);
-    width: 10%;
-    height: 10%;
+    box-sizing: content-box;    
+    width: 341px;
+    height: 573px;
+    padding: 30px;    
+    border: 1px solid black;
+}
+.mapborder1{
+box-sizing: content-box;    
+    width:413px;
+    height: 577px;
+    position: relative;
+    left: 402px;
+    bottom: 635px;
+    padding: 30px;    
+    border: 1px solid black;
+}
+a:hover {
+    background-color: rgb(246, 247, 248);
 }
