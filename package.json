@@ -1,10 +1,12 @@
 {
-  "name": "search-map",
+  "name": "node_module",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "google-map-react": "^1.0.5",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
+    "react-google-maps": "^9.4.5",
     "react-redux": "^5.0.7",
     "react-scripts": "1.1.4",
     "redux": "^4.0.0",
@@ -15,5 +17,17 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  }
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mannaina/search-map.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mannaina/search-map/issues"
+  },
+  "homepage": "https://github.com/Mannaina/search-map#readme"
 }
