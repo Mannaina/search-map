@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 export const searchMap =text=>{
     return {
         type: "SEARCHMAP",
@@ -12,7 +14,9 @@ export const showMap = value => {
     }
 }
 
-export const searchReducer = (state ={}, action)=>{
+export const searchReducer = (state = {
+    showMap: true
+}, action)=>{
 switch(action.type){
     case "SEARCHMAP":
    // console.log(action.text)

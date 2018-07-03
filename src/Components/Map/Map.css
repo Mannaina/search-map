@@ -1,20 +1,11 @@
-.mapborder{
-    box-sizing: content-box;    
-    width: 20px;
-    height: 50px;
-    padding: 30px;    
+.flex-box{
+    display: flex;
+}
+.flex-1 {
+    flex: 1;
     border: 1px solid black;
 }
-.mapborder1{
-box-sizing: content-box;    
-    width:20px;
-    bottom: 112px;
-    height: 50px;
-    position: relative;
-    left: 81px;
-    padding: 30px;    
-    border: 1px solid black;
-}
+
 a:hover {
     background-color: rgb(246, 247, 248);
 }
