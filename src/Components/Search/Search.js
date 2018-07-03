@@ -1,39 +1,57 @@
-import React,{Component} from 'react';
+import React, { Component } from 'react';
 import "./Search.css"
-import {searchMap,showMap} from './../../Redux/Search';
-import {connect } from 'react-redux'
-class Search extends Component{
-constructor(){
-    super();
-    this.state={
-        text:null
+import { searchMap, showMap } from './../../Redux/Search';
+import { connect } from 'react-redux';
+import axios from 'axios';
+
+class Search extends Component {
+    constructor() {
+        super();
+        this.state = {
+            text: null
+        }
     }
-}
-onHandleChange=(e)=>{
-    this.setState({
-        text:e.target.value
-    })
-}
-handleSearch=()=>{
-    this.props.dispatch(searchMap(this.state.text))
-    this.props.dispatch(showMap(false))
-}
-    render(){
-    //    console.log(this.state.text)
-        return(
+    onHandleChange = (e) => {
+        this.setState({
+            text: e.target.value
+        })
+    }
+    searchLatLon = (cityName) => {
+        let url = 'https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input={CITY_NAME}&inputtype=textquery&fields=geometry&key=AIzaSyBhp_hQ4TpNbM6mKwGfzVQ8su122_dZh-0';
+        let customUrl = url.replace('{CITY_NAME}', cityName);
+        let headers = {
+            "Content-type": "application/json; charset=UTF-8",
+            'Access-Control-Allow-Origin': '*'
+        };
+        axios.get(customUrl, headers)
+            .then((response) => {
+                console.log('responseData:', response.data.candidates[0].geometry.location);
+            })
+            .catch((error) => {
+                console.log('Error:', error);
+            });
+    }
+    handleSearch = () => {
+        this.props.dispatch(searchMap(this.state.text))
+        this.props.dispatch(showMap(false))
+        this.searchLatLon(this.state.text)
+    }
+    render() {
+        //    console.log(this.state.text)
+        return (
             <div>
                 <div>
-                <input type='text' placeholder="Search..." onChange={(e)=>{this.onHandleChange(e)}}/>
-                <span className="glyphicon glyphicon-search searchicon" onClick={()=>{this.handleSearch()}}>
-                </span>
-                 </div>
+                    <input type='text' placeholder="Search..." onChange={(e) => { this.onHandleChange(e) }} />
+                    <span className="glyphicon glyphicon-search searchicon" onClick={() => { this.handleSearch() }}>
+                    </span>
                 </div>
+            </div>
         );
     }
 }
-const mapStateToProps=(state)=>{
-return {
+const mapStateToProps = (state) => {
+    return {
 
+    }
 }
-}
-export default connect (mapStateToProps)(Search)
+export default connect(mapStateToProps)(Search)
