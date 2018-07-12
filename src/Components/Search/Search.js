@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import "./Search.css"
-import { searchMap, showMap } from './../../Redux/Search';
+import { searchMap, showMap, getCoordinates } from './../../Redux/Search';
 import { connect } from 'react-redux';
 import axios from 'axios';
 
@@ -18,14 +18,11 @@ class Search extends Component {
     }
     searchLatLon = (cityName) => {
         let url = 'https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input={CITY_NAME}&inputtype=textquery&fields=geometry&key=AIzaSyBhp_hQ4TpNbM6mKwGfzVQ8su122_dZh-0';
-        let customUrl = url.replace('{CITY_NAME}', cityName);
-        let headers = {
-            "Content-type": "application/json; charset=UTF-8",
-            'Access-Control-Allow-Origin': '*'
-        };
-        axios.get(customUrl, headers)
+        let customUrl = url.replace('{CITY_NAME}', cityName); // it is replacing the cityname in the url
+        axios.get(customUrl)
             .then((response) => {
-                console.log('responseData:', response.data.candidates[0].geometry.location);
+               // console.log('responseData:', response.data.candidates[0].geometry.location);
+                this.props.dispatch(getCoordinates(response.data.candidates[0].geometry.location))
             })
             .catch((error) => {
                 console.log('Error:', error);

@@ -1,23 +1,33 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {showMap} from "./../../Redux/Search";
+import { showMap } from "./../../Redux/Search";
 import GoogleMap from './GoogleMap'
 
 import './Map.css'
 class Map extends Component {
-    onShowMapClick=()=>{
+    onShowMapClick = () => {
         this.props.dispatch(showMap(true))
     }
     render() {
+        let resCoordinates={};
+        if (this.props.coordinates !== undefined) {
+            resCoordinates = this.props.coordinates;
+        }
         return (
             <div>
 
                 <div className="flex-box">
                     <div className="flex-1">
-                        <a onClick={this.onShowMapClick}> {this.props.text}  </a>
+                        <a onClick={this.onShowMapClick}>
+                            {this.props.text}
+                            <br/>
+                            {resCoordinates.lat}
+                            <br />
+                            {resCoordinates.lng}
+                        </a>
                     </div>
                     <div className="flex-1">
-                        {this.props.showMap ? <GoogleMap /> : null }
+                        {this.props.showMap ? <GoogleMap /> : null}
                     </div>
                 </div>
             </div>
@@ -26,10 +36,12 @@ class Map extends Component {
 }
 const mapStateToProps = (state) => {
     // const text = state.text;
-    const { text, showMap} = state;
+    console.log('we are geeting this state', state)
+    const { text, showMap, coordinates } = state;
     return {
         text,
-        showMap
+        showMap,
+        coordinates
     }
 }
 export default connect(mapStateToProps)(Map);

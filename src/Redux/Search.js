@@ -14,6 +14,13 @@ export const showMap = value => {
     }
 }
 
+export const getCoordinates = coordinates => {
+    return {
+        type:"GETCOORDINATES",
+        coordinates:coordinates
+    }
+}
+
 export const searchReducer = (state = {
     showMap: true
 }, action)=>{
@@ -23,6 +30,8 @@ switch(action.type){
     return Object.assign({},state,{text:action.text})  //state mutate
     case "SHOWMAP":
     return Object.assign({},state,{showMap:action.showMap})
+    case "GETCOORDINATES":
+    return Object.assign({}, state,{coordinates: action.coordinates})
     default:
     return state;
 
