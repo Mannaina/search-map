@@ -21,6 +21,13 @@ export const getCoordinates = coordinates => {
     }
 }
 
+export const getLocation = location => {
+    return {
+        type: "GETLOCATION",
+        location: location
+    }
+}
+
 export const searchReducer = (state = {
     showMap: true
 }, action)=>{
@@ -32,6 +39,8 @@ switch(action.type){
     return Object.assign({},state,{showMap:action.showMap})
     case "GETCOORDINATES":
     return Object.assign({}, state,{coordinates: action.coordinates})
+    case "GETLOCATION":
+    return Object.assign({}, state, { location: action.location })
     default:
     return state;
 
